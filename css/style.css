@@ -225,10 +225,11 @@ figcaption {
         margin-bottom: 0.5em;
     }
 }
- mark {
+    mark {
         background-color: #99f8a6; /* Verde pastel */
         padding: 0.1em 0.25em;
         border-radius: 4px;
         font-weight: bold;
         color: #0e492a; /* Verde oscuro para contraste */
     }
+
