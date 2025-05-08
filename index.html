@@ -15,7 +15,7 @@
         <div class="search-container">
             <input type="text" placeholder="Buscar en la página..." class="search-box">
             <button class="search-button">Buscar</button>
-        </div>        
+        </div>
         <img src="imagen/logotipo.PNG" alt="Logo" class="logo">
         <div class="subtitle">Resumen del video educativo</div>
         <div class="author">Helen Ticona Ilaquita</div>
@@ -61,7 +61,7 @@
             <ul>
                 <li><strong>Extremos:</strong> Son los puntos que marcan el inicio y final del segmento.</li>
                 <li><strong>Longitud:</strong> Es la distancia entre los dos extremos.</li>
-            
+
             </ul>
             <figure>
                 <img src="imagen/elementos.jpg" alt="">
@@ -117,5 +117,50 @@
             </div>
         </section>
     </main>
+    <script>
+        function realizarBusqueda() {
+            const input = document.querySelector('.search-box').value.toLowerCase();
+            const mainContent = document.querySelector('main');
+            const sections = mainContent.querySelectorAll('section');
+
+            // Eliminar resaltados anteriores
+            mainContent.querySelectorAll('mark').forEach(mark => {
+                const parent = mark.parentNode;
+                parent.replaceChild(document.createTextNode(mark.textContent), mark);
+                parent.normalize();
+            });
+
+            if (!input) return;
+
+            let primerMatch;
+
+            sections.forEach(section => {
+                section.innerHTML = section.innerHTML.replace(
+                    new RegExp(input, 'gi'),
+                    (match) => {
+                        if (!primerMatch) primerMatch = match;
+                        return `<mark>${match}</mark>`;
+                    }
+                );
+            });
+
+            // Desplazar al primer resultado
+            const marcado = document.querySelector('mark');
+            if (marcado) {
+                marcado.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Ejecutar con botón
+        document.querySelector('.search-button').addEventListener('click', realizarBusqueda);
+
+        // Ejecutar con tecla Enter
+        document.querySelector('.search-box').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                realizarBusqueda();
+            }
+        });
+    </script>
 </body>
+
 </html>
