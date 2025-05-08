@@ -75,7 +75,7 @@ main {
 
 /* Secciones con fondo de imagen */
 main section {
-    background-image: url('imagen/fondo.png');
+    background-image: url('../imagen/fondo.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
